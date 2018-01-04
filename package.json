@@ -1,0 +1,35 @@
+{
+  "name": "arbitrary-gh-webhook",
+  "version": "0.0.0",
+  "description": "QuickCheck data for GitHub webhooks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_PATH=. nyc --reporter html --reporter text ava -c 20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeLenny/arbitrary-gh-webhook.git"
+  },
+  "author": "Ryan Leonard (http://ryanleonard.us)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeLenny/arbitrary-gh-webhook/issues"
+  },
+  "homepage": "https://github.com/CodeLenny/arbitrary-gh-webhook#readme",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dependencies": {
+    "configurable-arbitrary": "0.0.2",
+    "jsverify": "^0.8.3"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "ava-verify": "0.0.1",
+    "nyc": "^11.4.1"
+  }
+}
