@@ -7,6 +7,22 @@
 
 QuickCheck data for GitHub Webhooks.
 
+### Status
+
+`arbitrary-gh-webhook` is partially developed,
+with each webhook being implemented in two stages.
+
+**Stage 1** webhooks are roughly implemented,
+but may use generic "random strings" in some places instead of properly-formatted URLs,
+and might have some values that don't match (labels may belong to a different repository than the issue they are attached to).
+
+**Stage 2** will attempt to fix some of these issues by doing more post-processing of the generated data to make sure data makes sense.
+
+#### Status of Each Webhook
+
+- ArbitraryIssuesEvent  
+  Stage 1 added in [v0.1.0][]
+
 ## Example Usage
 
 Want semi-random [`IssuesEvent`](https://developer.github.com/v3/activity/events/types/#issuesevent) webhooks
@@ -93,3 +109,5 @@ jsc.ava({
 [AVA]: https://github.com/avajs/ava
 [ConfigurableArbitrary]: https://github.com/rweda/configurable-arbitrary
 [`ava-verify`]: https://www.npmjs.com/package/ava-verify
+
+[v0.1.0]: https://github.com/CodeLenny/arbitrary-gh-webhook/tree/v0.1.0
