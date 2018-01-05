@@ -47,3 +47,4 @@ Initial Release.
   ** `WebhookIssue`
   ** `WebhookOrganization`
   ** `WebhookRepository`
+* Abstract `ArbitraryGitHubWebhook`
