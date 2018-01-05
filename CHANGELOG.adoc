@@ -38,6 +38,7 @@ Initial Release.
 * Helpers:
   ** `GitHubID`
   ** `GitHubUsername`
+  ** `GitHubTime`
 * Data Types:
   ** `WebhookLabel`
   ** `WebhookLabelList`
