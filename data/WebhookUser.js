@@ -33,7 +33,7 @@ module.exports = class WebhookLabel extends ConfigurableArbitrary {
 
       avatar_url: url => this.defaultArbitrary(url, jsc.string),
 
-      gravatar_id: id => this.defaultArbitrary(id, jsc.oneof( jsc.constant(null), jsc.string )),
+      gravatar_id: id => this.defaultArbitrary(id, jsc.oneof( jsc.constant(""), jsc.string )),
 
       type: type => this.defaultArbitrary(type, jsc.constant("User")),
 
