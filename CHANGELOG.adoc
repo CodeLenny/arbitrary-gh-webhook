@@ -37,6 +37,8 @@ Initial Release.
 * Basic README.
 * Helpers:
   ** `GitHubID`
+  ** `GitHubUsername`
 * Data Types:
   ** `WebhookLabel`
   ** `WebhookLabelList`
+  ** `WebhookUser`
