@@ -42,7 +42,7 @@ endif::[]
 
 link:{version-file-url}[Code] (link:{version-diff-url}[Diff]) | link:{version-log-url}[Changelog]
 
-Initial Release.  Created a basic `ArbitraryIssuesHook` (and supporting data classes).
+Initial Release.  Created a basic `ArbitraryIssuesEvent` (and supporting data classes).
 
 ### Added
 * Basic README.
