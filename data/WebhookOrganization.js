@@ -4,7 +4,7 @@ const jsc = require("jsverify");
 const GitHubID = require("./GitHubID");
 const GitHubUsername = require("./GitHubUsername");
 
-module.exports = class WebhookLabel extends ConfigurableArbitrary {
+module.exports = class WebhookOrganization extends ConfigurableArbitrary {
 
   static get opts() {
     return {
@@ -35,7 +35,7 @@ module.exports = class WebhookLabel extends ConfigurableArbitrary {
 
       gravatar_id: id => this.defaultArbitrary(id, jsc.oneof( jsc.constant(""), jsc.string )),
 
-      type: type => this.defaultArbitrary(type, jsc.constant("User")),
+      type: type => this.defaultArbitrary(type, jsc.constant("Organization")),
 
       site_admin: admin => this.defaultArbitrary(admin, jsc.boolean),
 

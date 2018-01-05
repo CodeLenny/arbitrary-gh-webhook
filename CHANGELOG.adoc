@@ -45,3 +45,5 @@ Initial Release.
   ** `WebhookUser`
   ** `WebhookMilestone`
   ** `WebhookIssue`
+  ** `WebhookOrganization`
+  ** `WebhookRepository`
