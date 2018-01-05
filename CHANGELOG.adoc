@@ -1,0 +1,42 @@
+= Changelog
+:github:
+// :gitlab:
+:owner: CodeLenny
+:project: arbitrary-gh-webhook
+
+:first-commit: 82baa236071b192492325c70c410ffd07ef88861
+// :latest-version: ...
+
+ifdef::github[]
+:repo-url: https://github.com/{owner}/{project}
+:repo-compare: {repo-url}/compare/
+:repo-changelog: {repo-url}/blob/master/CHANGELOG.adoc
+:compare-split: ...
+endif::[]
+ifdef::gitlab[]
+:repo-url: https://gitlab.com/{owner}/{project}
+:repo-compare: {repo-url}/compare/
+:compare-split: ...
+endif::[]
+
+ifdef::latest-version[]
+== link:{repo-compare}{latest-version}{compare-split}HEAD[Unreleased]
+endif::[]
+ifndef::latest-version[]
+ifdef::first-commit[]
+== link:{repo-compare}{first-commit}{compare-split}HEAD[Unreleased]
+endif::[]
+ifndef::first-commit[]
+== Unreleased
+endif::[]
+endif::[]
+
+Initial Release.
+
+### Added
+* Basic README.
+* Helpers:
+  ** `GitHubID`
+* Data Types:
+  ** `WebhookLabel`
+  ** `WebhookLabelList`
