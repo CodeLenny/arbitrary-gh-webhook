@@ -1,5 +1,10 @@
 # Arbitrary GitHub Webhooks
 
+[![arbitrary-gh-webhook on npm](https://img.shields.io/npm/v/arbitrary-gh-webhook.svg)](https://www.npmjs.com/package/arbitrary-gh-webhook)
+[![CI Results](https://img.shields.io/travis/CodeLenny/arbitrary-gh-webhook.svg)](https://travis-ci.org/CodeLenny/arbitrary-gh-webhook)
+[![Code Coverage](https://img.shields.io/codecov/c/github/codelenny/arbitrary-gh-webhook.svg)](https://codecov.io/gh/CodeLenny/arbitrary-gh-webhook)
+[![License details](https://img.shields.io/npm/l/arbitrary-gh-webhook.svg)](https://opensource.org/licenses/MIT)
+
 QuickCheck data for GitHub Webhooks.
 
 ## Example Usage
