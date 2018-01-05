@@ -12,16 +12,16 @@ const jsc = require("jsverify");
 jsc.ava = require("ava-verify");
 const arrayRange = require("jsverify-array-range");
 
-const ArbitraryIssuesHook = require("arbitrary-gh-webhook/hooks/ArbitraryIssuesHook");
-const WebhookIssue = require("arbitrary-gh-webhook/data/Issue");
-const WebhookLabel = require("arbitrary-gh-webhook/data/Label");
+const ArbitraryIssuesEvent = require("arbitrary-gh-webhook/hooks/ArbitraryIssuesEvent");
+const WebhookIssue = require("arbitrary-gh-webhook/data/WebhookIssue");
+const WebhookLabel = require("arbitrary-gh-webhook/data/WebhookLabel");
 
 const issueHasLabels = require("../issueHasLabels");
 
 jsc.ava({
     suite: "issueHasLabels returns a boolean",
   }, [
-    ArbitraryIssuesHook.build(),
+    ArbitraryIssuesEvent.build(),
   ], (issueData) => {
     t.is(typeof issueHasLabels(issueData), "boolean");
   }
@@ -30,7 +30,7 @@ jsc.ava({
 jsc.ava({
     suite: "issueHasLabels returns 'false' if Issue has 0 labels",
   }, [
-    ArbitraryIssuesHook.build({
+    ArbitraryIssuesEvent.build({
       issue: WebhookIssue.build({
         labels: jsc.constant([]),
       }),
@@ -43,7 +43,7 @@ jsc.ava({
 jsc.ava({
     suite: "issueHasLabels returns 'true' if Issue has 1+ labels",
   }, [
-    ArbitraryIssuesHook.build({
+    ArbitraryIssuesEvent.build({
       issue: WebhookIssue.build({
         labels: arrayRange(WebhookLabel.build(), 1),
       }),
