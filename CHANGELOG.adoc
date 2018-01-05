@@ -5,7 +5,7 @@
 :project: arbitrary-gh-webhook
 
 :first-commit: 82baa236071b192492325c70c410ffd07ef88861
-// :latest-version: ...
+:latest-version: v0.1.0
 
 ifdef::github[]
 :repo-url: https://github.com/{owner}/{project}
@@ -31,7 +31,18 @@ ifndef::first-commit[]
 endif::[]
 endif::[]
 
-Initial Release.
+:version: v0.1.0
+:version-date: 2018-01-05
+:previous-version: {first-commit}
+:version-file-url: {repo-url}/tree/{version}
+:version-diff-url: {repo-compare}{previous-version}{compare-split}{version}
+:version-log-url: {repo-changelog}#{version}---{version-date}
+
+== link:{version-file-url}[{version} - {version-date}]
+
+link:{version-file-url}[Code] (link:{version-diff-url}[Diff]) | link:{version-log-url}[Changelog]
+
+Initial Release.  Created a basic `ArbitraryIssuesHook` (and supporting data classes).
 
 ### Added
 * Basic README.
