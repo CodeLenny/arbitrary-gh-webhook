@@ -7,6 +7,8 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
   static get opts() {
     return {
 
+      useSecret: null,
+
       event: null,
 
       userAgentCode: null,
@@ -21,6 +23,11 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
   static spec(opts) {
     return {
 
+      useSecret: b => this.defaultArbitrary(
+        b,
+        typeof opts.useSecret === "boolean" ? jsc.constant(opts.useSecret) : jsc.bool
+      ),
+
       userAgentCode: c => this.defaultArbitrary(c, jsc.integer(16777216, 268435455)),
 
       delivery: i => this.defaultArbitrary(i, jsc.integer),
@@ -34,11 +41,15 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
     return this.smapobj(arb, opts => {
       const body = this.body(opts);
       const headers = this.headers(opts, body);
-      return {
-        secret: opts.secret,
+      const output = {
+        useSecret: opts.useSecret,
         body,
         headers,
       };
+      if(opts.useSecret) {
+        output.secret = opts.secret;
+      }
+      return output;
     });
   }
 
@@ -49,7 +60,7 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
       "User-Agent": `GitHub-Hookshot/${opts.userAgentCode.toString(16)}`,
       "Content-Type": "application/json",
     };
-    if(opts.secret) {
+    if(opts.useSecret) {
       const signature = "sha1=" + crypto.createHmac("sha1", opts.secret).update(JSON.stringify(body)).digest("hex");
       headers["X-Hub-Signature"] = signature;
     }

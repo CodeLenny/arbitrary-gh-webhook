@@ -5,10 +5,12 @@ const ArbitraryGitHubWebhook = require("hooks/ArbitraryGitHubWebhook");
 
 jsc.ava(
   {
-    suite: "provides a 'secret' field",
+    suite: "provides a 'secret' field (with 'useSecret')",
   },
   [
-    ArbitraryGitHubWebhook.build(),
+    ArbitraryGitHubWebhook.build({
+      useSecret: true,
+    }),
   ],
   (t, webhook) => {
     t.plan(1);

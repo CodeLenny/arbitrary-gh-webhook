@@ -10,24 +10,44 @@ const ArbitraryIssuesEvent = require("hooks/ArbitraryIssuesEvent");
 
 jsc.ava(
   {
-    suite: "has an 'X-Hub-Signature' field",
+    suite: "has an 'X-Hub-Signature' field when 'useSecret = true'",
   },
   [
-    ArbitraryIssuesEvent.build(),
+    ArbitraryIssuesEvent.build({
+      useSecret: true,
+    }),
   ],
   (t, webhook) => {
-    t.plan(1);
+    t.plan(2);
+    t.is(webhook.useSecret, true);
     t.is(typeof webhook.headers["X-Hub-Signature"], "string");
   }
 );
 
+jsc.ava(
+  {
+    suite: "doesn't has an 'X-Hub-Signature' field when 'useSecret = false'",
+  },
+  [
+    ArbitraryIssuesEvent.build({
+      useSecret: false,
+    }),
+  ],
+  (t, webhook) => {
+    t.plan(2);
+    t.is(webhook.useSecret, false);
+    t.is(typeof webhook.headers["X-Hub-Signature"], "undefined");
+  }
+);
 
 jsc.ava(
   {
     suite: "signs the body with the given secret",
   },
   [
-    ArbitraryIssuesEvent.build(),
+    ArbitraryIssuesEvent.build({
+      useSecret: true,
+    }),
   ],
   (t, webhook) => {
     t.plan(1);
