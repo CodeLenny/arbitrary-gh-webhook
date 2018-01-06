@@ -31,6 +31,15 @@ ifndef::first-commit[]
 endif::[]
 endif::[]
 
+### Added
+
+* `headers` object to `ArbitraryGitHubWebhook` output
+
+### Modified
+
+* `ArbitraryGitHubWebhook`
+  ** Made signing with a `secret` optional (added `useSecret` flag)
+
 :version: v0.1.0
 :version-date: 2018-01-05
 :previous-version: {first-commit}
