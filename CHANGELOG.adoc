@@ -31,6 +31,10 @@ ifndef::first-commit[]
 endif::[]
 endif::[]
 
+### Modified
+
+* [Bugfix] Fixed the paths in `index.js`
+
 :version: v0.1.1
 :version-date: YYYY-MM-DD
 :previous-version: v0.1.0
