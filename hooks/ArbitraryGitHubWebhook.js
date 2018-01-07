@@ -23,6 +23,8 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
   static spec(opts) {
     return {
 
+      event: e => this.defaultArbitrary(e, jsc.asciinestring),
+
       useSecret: b => this.defaultArbitrary(
         b,
         typeof opts.useSecret === "boolean" ? jsc.constant(opts.useSecret) : jsc.bool
@@ -32,7 +34,7 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
 
       delivery: i => this.defaultArbitrary(i, jsc.integer),
 
-      secret: s => this.defaultArbitrary(s, jsc.nestring),
+      secret: s => this.defaultArbitrary(s, jsc.asciinestring),
 
     };
   }
@@ -45,6 +47,7 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
         useSecret: opts.useSecret,
         body,
         headers,
+        superagent: this.superagentPlugin(body, headers),
       };
       if(opts.useSecret) {
         output.secret = opts.secret;
@@ -69,6 +72,16 @@ module.exports = class ArbitraryGitHubWebhook extends ConfigurableArbitrary {
 
   static body(opts) {
     return {};
+  }
+
+  static superagentPlugin(body, headers) {
+    return request => {
+      for (const headerName in headers) {
+        request.set(headerName, headers[headerName]);
+      }
+      request.send(body);
+      return request;
+    };
   }
 
 }
