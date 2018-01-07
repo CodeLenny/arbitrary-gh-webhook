@@ -5,7 +5,7 @@
 :project: arbitrary-gh-webhook
 
 :first-commit: 82baa236071b192492325c70c410ffd07ef88861
-:latest-version: v0.1.0
+:latest-version: v0.1.1
 
 ifdef::github[]
 :repo-url: https://github.com/{owner}/{project}
@@ -30,6 +30,19 @@ ifndef::first-commit[]
 == Unreleased
 endif::[]
 endif::[]
+
+:version: v0.1.1
+:version-date: YYYY-MM-DD
+:previous-version: v0.1.0
+:version-file-url: {repo-url}/tree/{version}
+:version-diff-url: {repo-compare}{previous-version}{compare-split}{version}
+:version-log-url: {repo-changelog}#{version}---{version-date}
+
+== link:{version-file-url}[{version} - {version-date}]
+
+link:{version-file-url}[Code] (link:{version-diff-url}[Diff]) | link:{version-log-url}[Changelog]
+
+Improved the output from `ArbitraryGitHubWebhook`.
 
 ### Added
 
