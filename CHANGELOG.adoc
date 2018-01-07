@@ -34,6 +34,7 @@ endif::[]
 ### Added
 
 * `headers` object to `ArbitraryGitHubWebhook` output
+* `superagent` plugin to `ArbitraryGitHubWebhook` output
 
 ### Modified
 

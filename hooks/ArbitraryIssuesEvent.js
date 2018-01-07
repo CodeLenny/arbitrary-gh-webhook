@@ -11,6 +11,8 @@ module.exports = class ArbitraryIssuesEvent extends ArbitraryGitHubWebhook {
   static get opts() {
     return {
 
+      event: jsc.constant("issues"),
+
       action: null,
 
       issue: null,
@@ -27,7 +29,7 @@ module.exports = class ArbitraryIssuesEvent extends ArbitraryGitHubWebhook {
   static spec(opts) {
     return {
 
-      event: e => this.defaultArbitrary(e, "issues"),
+      //event: e => this.defaultArbitrary(e, jsc.constant("issues")),
 
       action: a => this.defaultArbitrary(a, this.actions()),
 

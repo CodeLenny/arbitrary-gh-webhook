@@ -25,7 +25,9 @@ and might have some values that don't match (labels may belong to a different re
 
 ## Example Usage
 
-Want semi-random [`IssuesEvent`](https://developer.github.com/v3/activity/events/types/#issuesevent) webhooks
+### Raw Webhook Testing
+
+Want semi-random [`IssuesEvent`][] webhooks
 to test an `issueHasLabels` function?
 
 Let's setup a testing environment.  You'll need [JSVerify][], a standard JavaScript [QuickCheck][] library.
@@ -52,7 +54,7 @@ jsc.ava({
     suite: "issueHasLabels returns a boolean",
   }, [
     ArbitraryIssuesEvent.build(),
-  ], (issueData) => {
+  ], (t, issueData) => {
     t.is(typeof issueHasLabels(issueData), "boolean");
   }
 );
@@ -85,7 +87,7 @@ jsc.ava({
         labels: WebhookLabelList.build({ max: 0 }),
       }),
     }),
-  ], (issueData) => {
+  ], (t, issueData) => {
     t.is(issueHasLabels(issueData), false);
   }
 );
@@ -98,8 +100,38 @@ jsc.ava({
         labels: WebhookLabelList.build({ min: 1 }),
       }),
     }),
-  ], (issueData) => {
+  ], (t, issueData) => {
     t.is(issueHasLabels(issueData), true);
+  }
+);
+```
+
+### Usage with [SuperAgent][]
+
+Requests include a built-in [SuperAgent][] module, so you can easily send requests to a webserver.
+
+Let's say you've got a standard [Express][] server that should handle the [`IssuesEvent`][].
+
+```js
+const jsc = require("jsverify");
+jsc.ava = require("ava-verify");
+const ArbitraryIssuesEvent = require("arbitrary-gh-webhook/hooks/ArbitraryIssuesEvent");
+const request = require("supertest");
+
+const Server = require("../index.js");
+
+jsc.ava({
+    suite: "server stores new issues",
+  }, [
+    ArbitraryIssuesEvent.build(),
+  ], async (t, webhook) => {
+    t.plan(2);
+    const server = new Server();
+    await request(server.app)
+      .post("/hook/gh/issues")
+      .use(webhook.superagent)
+      .then(res => t.is(res.status, 200));
+    t.true(server.hasIssue(webhook.body.issue.id));
   }
 );
 ```
@@ -109,5 +141,8 @@ jsc.ava({
 [AVA]: https://github.com/avajs/ava
 [ConfigurableArbitrary]: https://github.com/rweda/configurable-arbitrary
 [`ava-verify`]: https://www.npmjs.com/package/ava-verify
+[SuperAgent]: https://github.com/visionmedia/superagent
+[Express]: https://expressjs.com/
+[`IssuesEvent`]: https://developer.github.com/v3/activity/events/types/#issuesevent
 
 [v0.1.0]: https://github.com/CodeLenny/arbitrary-gh-webhook/tree/v0.1.0
