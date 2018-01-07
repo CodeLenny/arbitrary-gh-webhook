@@ -1,6 +1,6 @@
 {
   "name": "arbitrary-gh-webhook",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "QuickCheck data for GitHub webhooks.",
   "main": "index.js",
   "scripts": {
